@@ -1,6 +1,7 @@
 # diary.vim
 
 diary.vim is a Vim plugin to keep a diary.
+
 It opens a file based on the date. That's all.
 
 ## Installation
@@ -19,10 +20,11 @@ Specify the directory for diary files:
 
 Specify how diary files are created:
 
-    " Create a file per day. (The resulting path is like ~/diary/2017/01/23)
+    " Create a file per day. (The resulting path is like ~/diary/2017/03/05)
     " This is the default.
     let g:diary_create = 'day'
-    " Create a file per month. (The resulting path is like ~/diary/2017/01)
+
+    " Create a file per month. (The resulting path is like ~/diary/2017/03)
     let g:diary_create = 'month'
 
 Specify the template of diary files:
@@ -31,18 +33,22 @@ Specify the template of diary files:
 
 ## Usage
 
-Open the entry for today:
+Open the file for today:
 
     :Diary
 
-Open the entry for the specific date (`YYYY-MM-DD` and `YYYY/MM/DD` is
-currently supported):
+Open the file for YYYY/MM/DD (when `g:diary_create` is `day`):
 
-    :Diary 2017-03-05
     :Diary 2017/03/05
 
-If the directory does not exist, it is automatically created when you save the
-entry.
+Open the file for YYYY/MM (when `g:diary_create` is `month`):
+
+    :Diary 2017/03
+
+Hyphen or space can be used instead of slash (`:Diary 2017 03 05`).
+
+If the parent directory does not exist, it is automatically created when you
+save the file.
 
 ## filetype
 
@@ -51,7 +57,10 @@ diary.vim sets `filetype` of diary files to `diary`.
 ## TODOs
 
  * Move to the next/previous day/month with `:next` and `:previous`
- * Flexible date specification (the year and/or the month can be omitted)
+ * Flexible date specification
+     * The year and/or the month can be omitted
+     * Leading zeros can be omitted ("3/5" instead of "03/05")
+     * Support for DD/MM/YYYY and MM/DD/YYYY notation
  * Searching (`grep -r word ~/diary` would be enough)
 
 ## License
