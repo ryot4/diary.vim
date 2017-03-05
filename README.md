@@ -3,6 +3,10 @@
 diary.vim is a Vim plugin to keep a diary.
 It opens a file based on the date. That's all.
 
+## Installation
+
+Use a package manager, or copy `plugin/diary.vim` into `~/.vim/plugin`.
+
 ## Settings
 
 Specify the directory for diary files:
