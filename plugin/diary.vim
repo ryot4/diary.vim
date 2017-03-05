@@ -50,7 +50,7 @@ endfunction
 function! s:diary(...)
   if a:0 == 1
     let date = split(a:1, '[-/]')
-    if len(date) != 3
+    if (g:diary_create == 'day' && len(date) != 3) || (g:diary_create == 'month' && len(date) != 2)
       call s:echo_error('[diary] invalid date: ' . a:1)
       return
     endif
