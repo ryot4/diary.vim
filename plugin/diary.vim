@@ -26,8 +26,12 @@ endif
 let g:loaded_diary = 1
 
 " default settings
-let g:diary_dir = expand('~/diary')
-let g:diary_create = 'day'
+if !exists('g:diary_dir')
+  let g:diary_dir = expand('~/diary')
+endif
+if !exists('g:diary_create')
+  let g:diary_create = 'day'
+endif
 
 function! s:echo_error(message)
   echohl ErrorMsg
