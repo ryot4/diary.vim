@@ -16,6 +16,7 @@ Use a plugin manager, or copy files as follows:
 
 Specify the directory for diary files:
 
+    " This is the default.
     let g:diary_dir = expand('~/diary')
 
 Specify how diary files are created:
@@ -27,7 +28,7 @@ Specify how diary files are created:
     " Create a file per month. (The resulting path is like ~/diary/2017/03)
     let g:diary_create = 'month'
 
-Specify the template of diary files:
+Specify the template of diary files (optional):
 
     let g:diary_template = expand('~/diary/template')
 
