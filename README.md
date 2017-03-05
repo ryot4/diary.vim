@@ -5,7 +5,11 @@ It opens a file based on the date. That's all.
 
 ## Installation
 
-Use a package manager, or copy `plugin/diary.vim` into `~/.vim/plugin`.
+Use a plugin manager, or copy files as follows:
+
+    mkdir -p ~/.vim/{autoload,plugin}
+    cp autoload/diary.vim ~/.vim/autoload/
+    cp plugin/diary.vim ~/.vim/plugin/
 
 ## Settings
 
