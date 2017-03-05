@@ -28,14 +28,18 @@ if !exists('g:diary_create')
   let g:diary_create = 'day'
 endif
 
+function! s:is_diary_file()
+  return (&ft == 'diary') || (stridx(expand('%:p'), g:diary_dir) == 0)
+endfunction
+
 function! s:on_buf_read_pre()
-  if stridx(expand('%:p'), g:diary_dir) == 0
+  if s:is_diary_file()
     setlocal filetype=diary
   endif
 endfunction
 
 function! s:on_new_file()
-  if stridx(expand('%:p'), g:diary_dir) == 0
+  if s:is_diary_file()
     if exists('g:diary_template')
       execute '0read' g:diary_template
     endif
@@ -44,7 +48,7 @@ function! s:on_new_file()
 endfunction
 
 function! s:on_buf_write_pre()
-  if &ft == 'diary'
+  if s:is_diary_file()
     let dir = expand('%:p:h')
     if !isdirectory(dir)
       call mkdir(dir, 'p')
