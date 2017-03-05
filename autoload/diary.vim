@@ -89,7 +89,7 @@ function! diary#open(...)
     call s:set_autocmd()
   end
   if a:0 == 1
-    let date = split(a:1, '[-/]')
+    let date = split(a:1, '[-/ ]')
     if (g:diary_create == 'day' && len(date) != 3) || (g:diary_create == 'month' && len(date) != 2)
       call s:error('invalid date: ' . a:1)
       return
