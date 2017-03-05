@@ -28,6 +28,12 @@ if !exists('g:diary_create')
   let g:diary_create = 'day'
 endif
 
+function! s:error(message)
+  echohl ErrorMsg
+  echom '[diary] ' . a:message
+  echohl None
+endfunction
+
 function! s:is_diary_file()
   return (&ft == 'diary') || (stridx(expand('%:p'), g:diary_dir) == 0)
 endfunction
@@ -66,19 +72,13 @@ function! s:set_autocmd()
   let s:autocmd = 1
 endfunction
 
-function! s:echo_error(message)
-  echohl ErrorMsg
-  echom a:message
-  echohl None
-endfunction
-
 function! s:open_diary(date)
   if g:diary_create == 'day'
     let n = 2
   elseif g:diary_create == 'month'
     let n = 1
   else
-    call s:echo_error('[diary] unknown creation mode: ' . g:diary_create)
+    call s:error('unknown creation mode: ' . g:diary_create)
     return
   endif
   execute 'edit' join([g:diary_dir] + a:date[:n], '/')
@@ -91,7 +91,7 @@ function! diary#open(...)
   if a:0 == 1
     let date = split(a:1, '[-/]')
     if (g:diary_create == 'day' && len(date) != 3) || (g:diary_create == 'month' && len(date) != 2)
-      call s:echo_error('[diary] invalid date: ' . a:1)
+      call s:error('invalid date: ' . a:1)
       return
     endif
   else
