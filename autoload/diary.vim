@@ -38,18 +38,11 @@ function! s:is_diary_file()
   return (&ft == 'diary') || (stridx(expand('%:p'), g:diary_dir) == 0)
 endfunction
 
-function! s:on_buf_read_post()
-  if s:is_diary_file()
-    setlocal filetype=diary
-  endif
-endfunction
-
 function! s:on_new_file()
   if s:is_diary_file()
     if exists('g:diary_template')
       execute '0read' g:diary_template
     endif
-    setlocal filetype=diary
   endif
 endfunction
 
@@ -65,7 +58,6 @@ endfunction
 function! s:set_autocmd()
   augroup diary
     autocmd!
-    autocmd BufReadPost * call s:on_buf_read_post()
     autocmd BufNewFile * call s:on_new_file()
     autocmd BufWritePre * call s:on_buf_write_pre()
   augroup END

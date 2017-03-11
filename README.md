@@ -65,10 +65,6 @@ depending on the path format. For example, in March 2017, `:Diary 5` opens
  * `~/diary/2017/03/05` if the formatter is `daily`.
  * `~/diary/2017/05` if the formatter is `monthly`.
 
-## filetype
-
-diary.vim sets `filetype` of diary files to `diary`.
-
 ## TODOs
 
  * Support for DD/MM/YYYY and MM/DD/YYYY notation
