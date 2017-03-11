@@ -21,3 +21,5 @@
 " IN THE SOFTWARE.
 
 command! -nargs=? Diary :call diary#open(<f-args>)
+command! DiaryPrev :call diary#prev()
+command! DiaryNext :call diary#next()

@@ -42,6 +42,8 @@ The following command opens the file for March 5 in the current year.
 
     :Diary 3/5
 
+You can also open the previous/next file with `:DiaryPrev`/`:DiaryNext`.
+
 If the parent directory does not exist, it is automatically created when you
 save the file.
 
@@ -69,7 +71,6 @@ diary.vim sets `filetype` of diary files to `diary`.
 
 ## TODOs
 
- * Move to the next/previous day/month with `:n` and `:N`
  * Support for DD/MM/YYYY and MM/DD/YYYY notation
  * More flexible file path (flat directory structure, file extension)
  * Searching (`grep -r word-to-search ~/diary` would be enough)
