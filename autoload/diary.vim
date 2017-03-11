@@ -24,8 +24,8 @@
 if !exists('g:diary_dir')
   let g:diary_dir = expand('~/diary')
 endif
-if !exists('g:diary_create')
-  let g:diary_create = 'day'
+if !exists('g:diary_path_format')
+  let g:diary_path_format = 'daily'
 endif
 
 function! s:error(message)
@@ -73,15 +73,8 @@ function! s:set_autocmd()
 endfunction
 
 function! s:open_diary(date)
-  if g:diary_create == 'day'
-    let n = 2
-  elseif g:diary_create == 'month'
-    let n = 1
-  else
-    call s:error('unknown creation mode: ' . g:diary_create)
-    return
-  endif
-  execute 'edit' join([g:diary_dir] + a:date[:n], '/')
+  let formatter = diary#path#formatter(g:diary_path_format)
+  execute 'edit' g:diary_dir . '/' . formatter.to_path(a:date)
 endfunction
 
 function! diary#open(...)
@@ -89,13 +82,14 @@ function! diary#open(...)
     call s:set_autocmd()
   end
   if a:0 == 1
-    let date = split(a:1, '[-/ ]')
-    if (g:diary_create == 'day' && len(date) != 3) || (g:diary_create == 'month' && len(date) != 2)
+    let formatter = diary#path#formatter(g:diary_path_format)
+    let date = formatter.parse(a:1)
+    if !diary#date#valid(date)
       call s:error('invalid date: ' . a:1)
       return
     endif
   else
-    let date = split(strftime('%Y-%m-%d', localtime()), '-')
+    let date = diary#date#current()
   endif
   call s:open_diary(date)
 endfunction
