@@ -30,7 +30,7 @@ endif
 
 function! s:error(message)
   echohl ErrorMsg
-  echom '[diary] ' . a:message
+  echom '[Diary] ' . a:message
   echohl None
 endfunction
 
@@ -82,7 +82,7 @@ function! diary#open(...)
     let formatter = diary#path#formatter(g:diary_path_format)
     let date = formatter.parse(a:1)
     if !diary#date#valid(date)
-      call s:error('invalid date: ' . a:1)
+      call s:error('Invalid date: ' . a:1)
       return
     endif
   else
