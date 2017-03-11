@@ -62,8 +62,8 @@ This behavior can be changed by specifying the path format.
 Note that the date passed to `:Diary` command is interpreted differently
 depending on the path format. For example, in March 2017, `:Diary 5` opens
 
- * `~/diary/2017/03/05` if the formatter is `daily`.
- * `~/diary/2017/05` if the formatter is `monthly`.
+ * `~/diary/2017/03/05` if the format is `daily`.
+ * `~/diary/2017/05` if the format is `monthly`.
 
 ## TODOs
 
