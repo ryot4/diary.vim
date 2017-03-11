@@ -9,7 +9,7 @@ It opens a file based on the date. That's all.
 Use a plugin manager, or copy files as follows:
 
     mkdir -p ~/.vim/{autoload,plugin}
-    cp autoload/diary.vim ~/.vim/autoload/
+    cp -R autoload/diary{,.vim} ~/.vim/autoload/
     cp plugin/diary.vim ~/.vim/plugin/
 
 ## Basic configuration
