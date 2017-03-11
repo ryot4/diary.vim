@@ -73,7 +73,12 @@ function! s:set_autocmd()
 endfunction
 
 function! s:open_diary(date)
+  if &modified == 1
+    call s:error('There are unsaved changes')
+    return
+  endif
   let formatter = diary#path#formatter(g:diary_path_format)
+  bd
   execute 'edit' g:diary_dir . '/' . formatter.to_path(a:date)
 endfunction
 
