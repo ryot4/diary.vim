@@ -96,14 +96,21 @@ function! s:date_of_current_file()
     let formatter = diary#path#formatter(g:diary_path_format)
     return formatter.to_date(substitute(expand('%:p'), g:diary_dir . '/', '', ''))
   else
+    call s:error('Not a diary file')
     return {}
   endif
 endfunction
 
 function! diary#prev()
-  call s:open_diary(diary#date#prev(s:date_of_current_file()))
+  let current = s:date_of_current_file()
+  if !empty(current)
+    call s:open_diary(diary#date#prev(current))
+  endif
 endfunction
 
 function! diary#next()
-  call s:open_diary(diary#date#next(s:date_of_current_file()))
+  let current = s:date_of_current_file()
+  if !empty(current)
+    call s:open_diary(diary#date#next(current))
+  endif
 endfunction
